@@ -6,34 +6,58 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset('assets/images/quiz-logo.png',
-              width: 300, color: Colors.white.withOpacity(0.6)),
-          const SizedBox(height: 30),
-          const Text(
-            'Learn flutter in fun way!',
-            style: TextStyle(color: Colors.white, fontSize: 24),
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.purple, Colors.deepPurple],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          OutlinedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const QuestionScreen(),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ColorFiltered(
+                colorFilter: ColorFilter.mode(
+                  Colors.white.withOpacity(0.6),
+                  BlendMode.srcATop,
                 ),
-              );
-            },
-            icon: Icon(Icons.arrow_right_alt, color: Colors.white),
-            label: const Text(
-              'Start Quiz',
-              style: TextStyle(color: Colors.white),
-            ),
+                child: Image.asset(
+                  'assets/images/quiz-logo.png',
+                  width: 300,
+                ),
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                'Learn Flutter in a fun way!',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+              const SizedBox(height: 20),
+              OutlinedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const QuestionScreen(),
+                    ),
+                  );
+                },
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Colors.white),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20, vertical: 12),
+                ),
+                icon: const Icon(Icons.arrow_right_alt),
+                label: const Text('Start Quiz'),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
+
